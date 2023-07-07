@@ -1,21 +1,29 @@
-export default function Tasks() {
+import TaskItem from "./TaskItem"
+
+interface TaskProps {
+  tasks: { id: string, title: string, completed: boolean }[]
+  toggleTask: (id: string, completed: boolean) => void
+  deleteTask: (id: string) => void
+}
+
+export default function Tasks({ tasks, toggleTask, deleteTask }: TaskProps) {
   return (
     <ul className="list-group">
       {tasks.length === 0 && <h2>Seems you don't have any tasks to do yet!</h2>}
 
       {tasks.map(task => {
         return (
-          <li key={task.id} className="list-group-item">
-            <label>
-              <input type="checkbox" checked={task.completed}
-                      onChange={e => toggleTask(task.id, e.target.checked)} />
-              {task.title}
-            </label>
-            <button onClick={() =>deleteTask(task.id)}
-            className="btn btn-danger">Delete</button>
-          </li>
+          <TaskItem {...task} // spread operator, pass all the properties of task
+          //  id={task.id}
+          //  title={task.title}
+          //  completed={task.completed}
+          key={task.id}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+           />
         )
       })}
+
   </ul>
   )
 }

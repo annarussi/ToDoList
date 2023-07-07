@@ -1,11 +1,20 @@
 import "./styles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Tasks from "./components/Tasks";
 
 export default function App() {
 
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const localValue = localStorage.getItem("TASKS")
+    if (localValue == null ) return []
+    
+    return JSON.parse(localValue)
+  });
+
+  useEffect(() => {
+    localStorage.setItem("TASKS", JSON.stringify(tasks))
+  }, [tasks]) // everytime my tasks property changes, this function will be called
 
   function addTask(title: string) {
     setTasks((currentTasks) => {
@@ -16,7 +25,7 @@ export default function App() {
     })
   }
 
-  function toggleTask (id, completed) {
+  function toggleTask (id: string, completed:boolean) {
     setTasks(currentTasks => {
       return currentTasks.map(todo => {
         if (task.id === id) {
@@ -27,7 +36,7 @@ export default function App() {
     })
   }
 
-  function deleteTask(id) {
+  function deleteTask(id: string) {
     setTasks(currentTasks => {
       return currentTasks.filter(task => task.id !== id)
     })
@@ -37,7 +46,7 @@ export default function App() {
     <>
       <Form onSubmit={addTask} />
       <h1 className="text-center mb-3">Tasks</h1>
-      <Tasks />
+      <Tasks tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask}/>
     </>
   )
 }
