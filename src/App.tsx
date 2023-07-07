@@ -1,23 +1,19 @@
 import "./styles.css";
 import { useState } from "react";
+import Form from "./components/Form";
+import Tasks from "./components/Tasks";
 
 export default function App() {
 
-  const [newTask, setNewTask] = useState <string>("");
+  const [tasks, setTasks] = useState([]);
 
-  const [tasks, setTasks] = useState<object[]>([]);
-
-  function handleSumit(e) {
-    e.preventDefault()
-
+  function addTask(title: string) {
     setTasks((currentTasks) => {
       return [
         ...currentTasks,
-        {id: crypto.randomUUID(), title: newTask, completed: false},
+        {id: crypto.randomUUID(), title, completed: false},
       ]
     })
-
-    setNewTask("") // clear the input
   }
 
   function toggleTask (id, completed) {
@@ -39,34 +35,9 @@ export default function App() {
 
   return(
     <>
-      <form onSubmit={handleSumit}>
-        <div className="mb-3">
-          <label htmlFor="item" className="form-label">New Task</label>
-          <input value={newTask} onChange={e => setNewTask(e.target.value)} type="text" id="item" className="form-control" />
-        </div>
-        <button className="btn btn-primary">Add</button>
-      </form>
-
+      <Form onSubmit={addTask} />
       <h1 className="text-center mb-3">Tasks</h1>
-
-      <ul className="list-group">
-        {tasks.length === 0 && <h2>Seems you don't have any tasks to do yet!</h2>}
-        {tasks.map(task => {
-          return (
-            <li key={task.id} className="list-group-item">
-              <label>
-                <input type="checkbox" checked={task.completed}
-                        onChange={e => toggleTask(task.id, e.target.checked)} />
-                {task.title}
-              </label>
-              <button onClick={() =>deleteTask(task.id)}
-               className="btn btn-danger">Delete</button>
-            </li>
-          )
-        })}
-
-
-      </ul>
+      <Tasks />
     </>
   )
 }
