@@ -52,10 +52,10 @@ export default function App() {
   }
 
   return(
-    <>
+    <div className="d-flex flex-column p-5">
       <Form onSubmit={addTask} />
-      <h1 className="text-center mb-3">Tasks</h1>
+      <h1 className="text-center mb-3 fw-bold">Tasks</h1>
       <Tasks tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask}/>
-    </>
+    </div>
   )
 }

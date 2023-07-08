@@ -8,7 +8,7 @@ interface TaskProps {
 
 export default function Tasks({ tasks, toggleTask, deleteTask }: TaskProps) {
   return (
-    <ul className="list-group">
+    <ul className="list-group list-group-flush border border-light rounded">
       {tasks.length === 0 && <h2>Seems you don't have any tasks to do yet!</h2>}
 
       {tasks.map(task => {

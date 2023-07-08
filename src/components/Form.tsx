@@ -19,12 +19,11 @@ export default function Form({ onSubmit }: FormProps) {
 
 
   return (
-    <form onSubmit={handleSumit}>
+    <form onSubmit={handleSumit} className="p-3">
         <div className="mb-3">
-          <label htmlFor="item" className="form-label">New Task</label>
-          <input value={newTask} onChange={e => setNewTask(e.target.value)} type="text" id="item" name="item" className="form-control" />
+        <input value={newTask} onChange={e => setNewTask(e.target.value)} placeholder="Write your new task here..." type="text" id="item" name="item" className="form-control" />
         </div>
-        <button className="btn btn-primary">Add</button>
+        <button className="btn btn-outline-primary btn-sm px-3">Add</button>
     </form>
   )
 }
