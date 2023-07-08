@@ -3,6 +3,7 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Tasks from "./components/Tasks";
+import Footer from "./components/Footer";
 
 interface Tasks {
   id: string,
@@ -56,6 +57,7 @@ export default function App() {
       <Form onSubmit={addTask} />
       <h1 className="text-center mb-3 fw-bold">Tasks</h1>
       <Tasks tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask}/>
+      <Footer link="https://github.com/annarussi/" text='See more projects on my GitHub ♥'/>
     </div>
   )
 }

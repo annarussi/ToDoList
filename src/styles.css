@@ -3,4 +3,35 @@
 body {
   font-family: 'Dosis', sans-serif !important;
   background-color: #f2ead35d;
+  min-height:100vh;
+  position: relative;
+  padding-bottom: 70px;
+}
+
+/*  FOOTER */
+
+
+.footer {
+  background: #c2d8fd00;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  padding: 0px 50px;
+  position: absolute;
+  left: 0 ; right: 0; bottom: 0;
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+.footer-links a {
+  color: #a6a5a5;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0px 10px;
+
+    &:hover {
+      color: #DFD7BF;
+    }
 }
