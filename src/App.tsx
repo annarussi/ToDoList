@@ -53,7 +53,7 @@ export default function App() {
   }
 
   return(
-    <div className="d-flex flex-column p-5">
+    <div className="d-flex flex-column p-3 task-container">
       <Form onSubmit={addTask} />
       <h1 className="text-center mb-3 fw-bold">Tasks</h1>
       <Tasks tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask}/>
