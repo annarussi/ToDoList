@@ -35,3 +35,17 @@ body {
       color: #DFD7BF;
     }
 }
+
+/* CONTAINER */
+
+.task-container{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+@media(max-width: 570px){
+  .task-container{
+    max-width: 100%;
+  }
+}
